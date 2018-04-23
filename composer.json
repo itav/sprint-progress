@@ -1,0 +1,23 @@
+{
+    "name": "sylwester/sprint-progress-api",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sylwester Kowalski",
+            "email": "sylwester.kowalski@performgroup.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "silex/silex": "^2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.5.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Perform\\PrivateProjects\\SprintProgress\\": "src/"
+        }
+    }
+}
