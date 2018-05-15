@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="refresh" content="1800" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <title>Current Sprint Progress</title>
+</head>
+<body style="background-color: #222222; color: whitesmoke">
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+<div class="container">
+    <h2>Current Sprint Progress (<? echo $vars['sprint']['sprint']['name']; ?>)</h2>
+
+
+    <h5>Rabbit</h5>
+    <div class="progress">
+        <div class="progress-bar bg-danger" role="progressbar"
+             style="width: <? echo $vars['progress']['rabbit_position']; ?>%"
+             aria-valuenow="<? echo $vars['progress']['rabbit_position']; ?>"
+             aria-valuemin="0"
+             aria-valuemax="100"><? echo $vars['progress']['rabbit_position']; ?>%</div>
+    </div>
+    <div style="margin-bottom: 10px"></div>
+
+    <h5>Team</h5>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar"
+             style="width: <? echo $vars['progress']['team_position']; ?>%"
+             aria-valuenow="<? echo $vars['progress']['team_position']; ?>"
+             aria-valuemin="0"
+             aria-valuemax="100"><? echo $vars['progress']['team_position']; ?>%</div>
+    </div>
+
+    <div style="margin-bottom: 20px"></div>
+
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Story Points</th>
+            <th scope="col">Sub-tasks</th>
+            <th scope="col">Sub-tasks done</th>
+            <th scope="col">Burned points</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <? foreach ($vars['sprint']['user_stories']['items'] as $idx => $user_story): ?>
+            <tr>
+                <th scope="row"><? echo $idx + 1; ?></th>
+                <td><? echo '['; ?><a href="<? echo $user_story['link']; ?>"
+                                      target="_blank"><? echo $user_story['key']; ?></a><? echo "] {$user_story['name']}"; ?>
+                </td>
+                <td><? echo $user_story['story_points']; ?></td>
+                <td><? echo $user_story['sub_task_count']; ?></td>
+                <td><? echo $user_story['sub_task_done_count']; ?></td>
+                <td><? echo round($user_story['burned_story_points'], 1); ?></td>
+                <td  <? if ($user_story['story_points'] > 0 && $user_story['story_points'] === $user_story['burned_story_points']): ?>class="bg-success"
+                     <? elseif ($user_story['story_points'] > 0 && $user_story['burned_story_points'] > 0): ?>class="bg-warning"
+                     <? elseif ($user_story['story_points'] > 0 && $user_story['burned_story_points'] === 0): ?>class="bg-danger"
+                     <? else: ?>class="bg-info"
+                    <? endif; ?>></td>
+            </tr>
+        <? endforeach; ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="2" class="right">Total:</th>
+            <td><? echo $vars['sprint']['total_story_points']; ?></td>
+            <td></td>
+            <td></td>
+            <td colspan="2"><? echo round($vars['sprint']['total_burned'], 1); ?></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+</body>
+</html>

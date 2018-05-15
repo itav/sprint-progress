@@ -34,7 +34,8 @@ class UserStoryFactory
 
         foreach ($tasks as $task) {
             $id = (int)$task['id'];
-            $name = "[{$task['key']}] {$task['fields']['summary']}";
+            $key = $task['key'];
+            $name = "{$task['fields']['summary']}";
             $storyPoints = (int)(round($task['fields']['customfield_10002'] ?? 0));
             $subTasksOfTask = array_filter($subTasks, function ($item) use ($id) {
                 return (int)($item['fields']['parent']['id'] ?? -1) === $id;
@@ -54,6 +55,7 @@ class UserStoryFactory
             $userStory = new UserStory(
                 $id,
                 $name,
+                $key,
                 $storyPoints,
                 $subTaskCount,
                 $subTaskDoneCount

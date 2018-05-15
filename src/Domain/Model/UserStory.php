@@ -9,8 +9,12 @@ namespace Perform\PrivateProjects\SprintProgress\Domain\Model;
  */
 class UserStory
 {
+    const BASE_BROWSE_JIRA_URL = 'https://jira2.performgroup.com/browse/';
+
     private $id;
     private $name;
+    private $key;
+    private $link;
     private $storyPoints;
     private $subTaskCount;
     private $subTaskDoneCount;
@@ -19,12 +23,15 @@ class UserStory
     public function __construct(
         int $id,
         string $name,
+        string $key,
         int $storyPoints,
         int $subTaskCount,
         int $subTaskDoneCount
     ) {
         $this->id = $id;
         $this->name = $name;
+        $this->key = $key;
+        $this->link = self::BASE_BROWSE_JIRA_URL . $key;
         $this->storyPoints = $storyPoints;
         $this->subTaskCount = $subTaskCount;
         $this->subTaskDoneCount = $subTaskDoneCount;

@@ -5,7 +5,7 @@ namespace Perform\PrivateProjects\SprintProgress\Domain\Model;
 
 class UserStories
 {
-    private $items;
+    private $items = [];
 
     public function add(UserStory $story): void
     {

@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Perform\PrivateProjects\SprintProgress\Infrastructure;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
 class JiraApiClient
@@ -57,15 +56,11 @@ class JiraApiClient
 
     private function sendRequest(string $uri): ResponseInterface
     {
-        try {
-            return $this->httpClient->get(self::HOST . $uri, [
-                'headers' => [
-                    'Authorization' => 'Basic ' . base64_encode(self::LOGIN . ':' . self::PASSWORD),
-                    'Content-Type' => 'application/json',
-                ]
-            ]);
-        } catch (\Throwable $exception) {
-            return new Response(500, [], json_encode(['error' => ['msg' => $exception->getMessage()]]));
-        }
+        return $this->httpClient->get(self::HOST . $uri, [
+            'headers' => [
+                'Authorization' => 'Basic ' . base64_encode(self::LOGIN . ':' . self::PASSWORD),
+                'Content-Type' => 'application/json',
+            ]
+        ]);
     }
 }

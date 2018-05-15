@@ -1,23 +1,30 @@
 {
-    "name": "sylwester/sprint-progress-api",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Sylwester Kowalski",
-            "email": "sylwester.kowalski@performgroup.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "guzzlehttp/guzzle": "^6.3@dev",
-        "silex/silex": "^2.2"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "6.5.x-dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "Perform\\PrivateProjects\\SprintProgress\\": "src/"
-        }
+  "name": "sylwester/sprint-progress-api",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Sylwester Kowalski",
+      "email": "sylwester.kowalski@performgroup.com"
     }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "ssh://git@stash.performgroup.com/oc/oc-serializer.git"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "guzzlehttp/guzzle": "^6.3@dev",
+    "silex/silex": "^2.2",
+    "perform/oc-serializer": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.5.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Perform\\PrivateProjects\\SprintProgress\\": "src/"
+    }
+  }
 }
